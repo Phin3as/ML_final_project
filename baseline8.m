@@ -10,6 +10,10 @@ X_train = pv(1:train_size,1:numpc);
 Y_train = genders_train(1:train_size,:);
 X_test = pv(train_size+1:end,1:numpc);
 
+X_train=words_train;
+Y_train=genders_train;
+X_test=words_test;
+
 lm_mdl = fitlm(X_train,Y_train);
 
 Y_test = predict(lm_mdl,X_test);

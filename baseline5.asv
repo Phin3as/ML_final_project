@@ -11,14 +11,13 @@
 %%X_test = pv((ind==2),1:numpc);
 %Y_test = genders_train((ind==2),:);
 
-X_train=zeros(train_size,train_features);
-
 for i=1:train_size
-    m = rms(words_train(i,:));
-    X_train(i,:) = words_train(i,:)./m;
+    m = rms(words_train(i));
+    words_train(i,:) = words_train(i,:)./m;
+    words_train(i,)
 end
 
-svm_mdl = fitcsvm(X_train,genders_train,'KernelFunction','kernel_intersection');
+svm_mdl = fitcsvm(words_train,genders_train,'KernelFunction','kernel_intersection');
 Y_test = predict(svm_mdl,words_test);
 
 %svm_pca_mdl = fitcsvm(words_train,genders_train,'KernelFunction','polynomial','PolynomialOrder',2);
