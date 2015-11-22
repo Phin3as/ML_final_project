@@ -1,3 +1,4 @@
+%Cosine Similarity Acc 76%
 cos_sim = @(x,y) dot(x,y)./(norm(x,2)*norm(y,2));
 
 [train_size ~] = size(words_train);
