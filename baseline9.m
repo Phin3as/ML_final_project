@@ -28,10 +28,12 @@ for i=1:X_test
     X_test(i,:)=X_test(i,:)./m;
 end
 
-mdl = svmtrain(genders_train,X_train);
-tmp=zeros(test_size,1);
-[Y_test, accuracy, prob_estimates] = svmpredict(tmp,X_test,mdl);
+%mdl = svmtrain(genders_train,X_train,'KernelFunction','kernel_intersection');
+%tmp=zeros(test_size,1);
+%[Y_test, accuracy, prob_estimates] = svmpredict(tmp,X_test,mdl);
+func_i= @(X,X2) kernel_intersection(X, X2);
 
+[test_err mdl]=kernel_libsvm(X_train,genders_train,X_test,tmp,func_i);
 
 %svm_mdl = fitcsvm(words_train,genders_train,'KernelFunction','polynomial','PolynomialOrder',3);
 %Y_test2 = predict(svm_mdl,words_test);
